@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<title>jQuery Tabs</title>
+
+<link rel="stylesheet" type="text/css" href="css/tabs.css">
+</head>
+<body>
+
+<main class="container">
+	<div class="row">
+		
+		<div class="col-md-12 jumbotron">
+			<h1>jQuery Tabs</h1>
+		</div>
+
+		<div class="tab-panels">
+			<ul class="tabs">
+				<li data-panel-name="panel1" class="active">panel 1</li>
+				<li data-panel-name="panel2">panel 2</li>
+				<li data-panel-name="panel3">panel 3</li>
+				<li data-panel-name="panel4">panel 4</li>
+			</ul>
+
+			<div id="panel1" class="panel active">
+				Content for Panel 1 here
+			</div>
+
+			<div id="panel2" class="panel">
+				Content for Panel 2 here
+			</div>
+
+			<div id="panel3" class="panel">
+				Content for Panel 3 here
+			</div>
+
+			<div id="panel4" class="panel">
+				Content for Panel 4 here
+			</div>
+		</div>
+
+
+		<div class="tab-panels">
+			<ul class="tabs">
+				<li data-panel-name="panel5" class="active">panel 5</li>
+				<li data-panel-name="panel6">panel6</li>
+				<li data-panel-name="panel7">panel 7</li>
+				<li data-panel-name="panel8">panel 8</li>
+			</ul>
+
+			<div id="panel5" class="panel active">
+				Content for Panel 5 here
+			</div>
+
+			<div id="panel6" class="panel">
+				Content for Panel 6 here
+			</div>
+
+			<div id="panel7" class="panel">
+				Content for Panel 7 here
+			</div>
+
+			<div id="panel8" class="panel">
+				Content for Panel 8 here
+			</div>
+		</div>
+
+
+		
+	</div>
+</main>
+
+
+<!--jQuery 1.x-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<script>
+	$(function(){
+		$('.tab-panels .tabs li').on('click', function(){
+
+			var $panel = $(this).closest('.tab-panels');
+			//event listener listening for clicks on the tabs panels
+			
+			//figure out which panel to show
+
+			$panel.find(' .tabs li.active').removeClass('active');
+
+			$(this).addClass('active');
+
+			var clickedPanel = $(this).attr('data-panel-name');
+
+			//hide current panel
+			$panel.find('.panel.active').slideUp(300, nextPanel);
+
+			//show new panel
+			function nextPanel(){
+				$(this).removeClass('active');
+
+				$('#'+clickedPanel).slideDown(300, function(){
+					$(this).addClass('active');
+				});
+			}
+		})
+	});
+</script>
+</body>
+</html>
